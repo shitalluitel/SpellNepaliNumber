@@ -7,4 +7,4 @@ You can simply run following command to install this python package on your syst
 pip install SpellNepaliNumber
 
 Working
-Just run SpellNepaliNumber in your terminal and its ready to go.
+Just run spellnepalinumber in your terminal and its ready to go.
