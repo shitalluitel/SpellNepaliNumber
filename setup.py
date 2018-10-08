@@ -3,6 +3,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
+# requirements = [pkg.split('=')[0] for pkg in open('requirements.txt').readlines()]
 
 # description = "Commandline tool to listen all radio stations of Nepal"
 
@@ -14,15 +15,16 @@ classifiers = ['Environment :: Console',
 
 # version = open('CHANGES.txt').readlines()[0][1:].strip()
 
-setup(name='SpellNepaliNumber',
-      version='1.1.0',
-      description="To know Nepali numbers in words",
-      author='Shital Babu Luitel',
-      author_email='ctalluitel@gmail.com',
-      url='https://github.com/shitalluitel/SpellNepaliNumber',
-      scripts=['src/SpellNepaliNumberl'],
-      install_requires=requirements,
-      packages=['SpellNepaliNumber'],
-      package_dir = {'SpellNepaliNumber': 'src/SpellNepaliNumber'},
-      classifiers=classifiers
-      )
+setup(
+  name='SpellNepaliNumber',
+  version='1.2.1',
+  description="To Spell Out Nepali Numbers In Nepali Language.",
+  author='Shital Babu Luitel',
+  author_email='ctalluitel@gmail.com',
+  url='https://github.com/shitalluitel/SpellNepaliNumber',
+  scripts=['src/spellnepalinumber'],
+  # install_requires=requirements,
+  packages=['SpellNepaliNumber'],
+  package_dir = {'SpellNepaliNumber': 'src/SpellNepaliNumber'},
+  classifiers=classifiers
+) 
