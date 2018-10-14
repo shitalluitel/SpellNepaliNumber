@@ -17,7 +17,7 @@ classifiers = ['Environment :: Console',
 
 setup(
   name='SpellNepaliNumber',
-  version='1.2.1',
+  version='1.2.2',
   description="To Spell Out Nepali Numbers In Nepali Language.",
   author='Shital Babu Luitel',
   author_email='ctalluitel@gmail.com',

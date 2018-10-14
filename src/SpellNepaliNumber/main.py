@@ -1,6 +1,7 @@
 
 def convert(data):
 	numberMap = {
+		".":".",
 		"0":"०",
 		"1":"१",
 		"2":"२",
@@ -25,6 +26,7 @@ def convert(data):
 def run():
 
 	dictData = {
+		"०१":"एक","०२":"दुई","०३": "तिन", "०४": "चार", "०५": "पाँच", "०६": "छ", "०७": "सात", "०८": "आठ", "०९": "नौ", 
 		"०": "सुन्ना", "१": "एक", 	"२": "दुई", "३": "तिन", "४": "चार", "५": "पाँच", "६": "छ", "७": "सात", "८": "आठ", "९": "नौ", 
 		"१०": "दस", "११": "एघार", "१२": "बाह्र", "१३": "तेह्र", "१४": "चौध", "१५": "पन्ध्र", "१६": "सोह्र", "१७": "सत्र", "१८": "अठार", "१९": "उन्नाइस", 
 		"२०": "बिस", "२१": "एक्काइस", "२२": "बाइस", "२३": "तेइस", "२४": "चौबिस", "२५": "पच्चिस", "२६": "छब्बिस", "२७": "सत्ताइस", "२८": "अट्ठाइस", "२९": "उनन्तिस", 
@@ -49,11 +51,13 @@ def run():
 		rupee, paisa = inData.split('.')
 	except:
 		rupee = inData
-		paisa = None
+		paisa = ""
 
 	length = len(rupee)
 	rupee = rupee[::-1]
 
+	if len(paisa) > 2:
+		print("Only 2 digits accepted after decimal.")
 
 	outputString = ""
 
@@ -71,31 +75,41 @@ def run():
 		"13": "खरब",
 	}
 
-	if length > 3:
-		if length % 2 == 0:
-			old_length = length	
-			length = length - 1
-			nepaliString = rupee[length]
-			outputString += dictData[nepaliString] + " " + dictmap[str(old_length)] + " "
+	try:
+		if length > 3:
+			if length % 2 == 0:
+				old_length = length	
+				length = length - 1
+				nepaliString = rupee[length]
+				outputString += dictData[nepaliString] + " " + dictmap[str(old_length)] + " "
 
-		for i in range(length,3, -2):
-			nepaliString = rupee[i-2:i][::-1]
-			outputString += dictData[nepaliString] + " " + dictmap[str(i)] + " "
-		length = 3
+			for i in range(length,3, -2):
+				nepaliString = rupee[i-2:i][::-1]
+				outputString += dictData[nepaliString] + " " + dictmap[str(i)] + " "
+			length = 3
 
-	if length == 3:
-		nepaliString = rupee[2]
-		outputString += dictData[nepaliString] + " " + dictmap[str(3)] + " "	
+		if length == 3:
+			nepaliString = rupee[2]
+			outputString += dictData[nepaliString] + " " + dictmap[str(3)] + " "	
 
-	nepaliString = rupee[0:2][::-1]
-	outputString +=	dictData[nepaliString] + " रुपैयाँ "
+		if length == 2:
+			nepaliString = rupee[0:2][::-1]
+			if not nepaliString == '००':
+				outputString +=	dictData[nepaliString] + " रुपैयाँ "
+		else:
+			nepaliString = rupee[0]
+			if not nepaliString == '०':
+				outputString += dictData[nepaliString] + " रुपैयाँ "	
 
-	if paisa:
-		outputString += dictData[paisa] + " पैसा"
+		if len(paisa) > 0:
+			if not paisa == '००' and not paisa == '०':
+				outputString += dictData[paisa] + " पैसा "
 
-	print("%s= %s" % 	(inData,outputString))
-
-	return outputString
+		print("%s= %s" % 	(inData,outputString))
+		return outputString
+	except :
+		print("Unable to convert.")
+	
 
 def main():
 	run()
