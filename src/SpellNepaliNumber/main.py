@@ -90,22 +90,23 @@ def run():
 
 		if length == 3:
 			nepaliString = rupee[2]
-			outputString += dictData[nepaliString] + " " + dictmap[str(3)] + " "	
+			outputString += dictData[nepaliString] + " " + dictmap[str(3)] + " "
+			length = 2
 
 		if length == 2:
 			nepaliString = rupee[0:2][::-1]
 			if not nepaliString == '००':
 				outputString +=	dictData[nepaliString] + " रुपैयाँ "
-		else:
+		elif length == 1:
 			nepaliString = rupee[0]
 			if not nepaliString == '०':
 				outputString += dictData[nepaliString] + " रुपैयाँ "	
 
 		if len(paisa) > 0:
-			if not paisa == '००' and not paisa == '०':
+			if not paisa == '००' and not paisa[0] == '०':
 				outputString += dictData[paisa] + " पैसा "
 
-		print("%s= %s" % 	(inData,outputString))
+		print("%s= %s" % (inData,outputString))
 		return outputString
 	except :
 		print("Unable to convert.")
